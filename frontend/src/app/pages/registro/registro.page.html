@@ -1,0 +1,122 @@
+<ion-header class='ion-no-border'>
+<ion-toolbar color='primary'>
+<ion-title>
+<div class='header-title'>
+<ion-icon name='person-add-outline'></ion-icon>
+Registro de Persona
+</div>
+</ion-title>
+</ion-toolbar>
+</ion-header>
+<ion-content class='ion-padding content-bg'>
+<div class='card-container'>
+<div class='form-card'>
+<div class='form-header'>
+<div class='avatar-icon'>
+<ion-icon name='person-circle-outline'></ion-icon>
+</div>
+<h2>Nueva Persona</h2>
+<p>Completa todos los campos del formulario</p>
+</div>
+<form (ngSubmit)='guardar()' #miForm='ngForm'>
+<div class='input-group'>
+<label class='input-label'>
+<ion-icon name='person-outline'></ion-icon> Nombre *
+</label>
+<ion-input
+[(ngModel)]='persona.nombre'
+name='nombre'
+required
+placeholder='Ej: Juan'
+class='custom-input'>
+</ion-input>
+</div>
+<div class='input-group'>
+<label class='input-label'>
+<ion-icon name='people-outline'></ion-icon> Apellido *
+</label>
+<ion-input
+[(ngModel)]='persona.apellido'
+name='apellido'
+
+required
+placeholder='Ej: García'
+class='custom-input'>
+</ion-input>
+</div>
+<div class='input-group'>
+<label class='input-label'>
+<ion-icon name='calendar-outline'></ion-icon> Edad *
+</label>
+<ion-input
+[(ngModel)]='persona.edad'
+name='edad'
+type='number'
+required
+placeholder='Ej: 22'
+class='custom-input'>
+</ion-input>
+</div>
+<div class='input-group'>
+<label class='input-label'>
+<ion-icon name='mail-outline'></ion-icon> Correo electrónico *
+</label>
+<ion-input
+[(ngModel)]='persona.correo'
+name='correo'
+type='email'
+required
+placeholder='correo@ejemplo.com'
+class='custom-input'>
+</ion-input>
+</div>
+<div class='input-group'>
+<label class='input-label'>
+<ion-icon name='call-outline'></ion-icon> Teléfono
+</label>
+<ion-input
+[(ngModel)]='persona.telefono'
+name='telefono'
+type='tel'
+placeholder='Ej: 5512345678'
+class='custom-input'>
+</ion-input>
+</div>
+<div class='input-group'>
+<label class='input-label'>
+<ion-icon name='location-outline'></ion-icon> Ciudad
+</label>
+<ion-input
+[(ngModel)]='persona.ciudad'
+name='ciudad'
+placeholder='Ej: Ciudad de México'
+class='custom-input'>
+</ion-input>
+</div>
+<ion-button
+expand='block'
+type='submit'
+class='submit-btn'
+[disabled]='!miForm.valid || cargando'>
+<ion-icon name='save-outline' slot='start'></ion-icon>
+{{ cargando ? 'Guardando...' : 'Guardar Persona' }}
+</ion-button>
+</form>
+</div>
+<!-- Lista de personas guardadas -->
+<div class='lista-section' *ngIf='personas.length > 0'>
+<h3 class='lista-title'>
+<ion-icon name='people-outline'></ion-icon>
+Personas registradas ({{ personas.length }})
+</h3>
+<div class='persona-card' *ngFor='let p of personas'>
+<div class='persona-avatar'>{{ p.nombre[0] }}{{ p.apellido[0] }}</div>
+<div class='persona-info'>
+<strong>{{ p.nombre }} {{ p.apellido }}</strong>
+<span>{{ p.correo }}</span>
+<span>{{ p.edad }} años | {{ p.ciudad }}</span>
+</div>
+</div>
+</div>
+</div>
+</ion-content>
